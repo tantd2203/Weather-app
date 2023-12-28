@@ -23,7 +23,7 @@ export default function HomeScreen() {
     // console.log('value: ',search);
     if(search && search.length>2)
       fetchLocations({cityName: search}).then(data=>{
-        // console.log('got locations: ',data);
+
         setLocations(data);
       })
   }
@@ -70,6 +70,7 @@ export default function HomeScreen() {
   return (
     <View className="flex-1 relative">
       <StatusBar style="light" />
+    
       <Image 
         blurRadius={70} 
         source={require('../assets/images/bg.png')} 
@@ -160,26 +161,37 @@ export default function HomeScreen() {
                     </Text>
                 </View>
 
+                <View className="space-y-2"> 
+                <Text className="text-center font-bold text-white text-1xl ml-2" > {location?.localtime} </Text>
+
+                </View>
+                
+                  
                 {/* other stats */}
                 <View className="flex-row justify-between mx-4">
+
                   <View className="flex-row space-x-2 items-center">
                     <Image source={require('../assets/icons/wind.png')} className="w-6 h-6" />
                     <Text className="text-white font-semibold text-base">{current?.wind_kph}km</Text>
                   </View>
+
                   <View className="flex-row space-x-2 items-center">
                     <Image source={require('../assets/icons/drop.png')} className="w-6 h-6" />
                     <Text className="text-white font-semibold text-base">{current?.humidity}%</Text>
                   </View>
+                  
+
                   <View className="flex-row space-x-2 items-center">
                     <Image source={require('../assets/icons/sun.png')} className="w-6 h-6" />
-                    <Text className="text-white font-semibold text-base">
-                      { weather?.forecast?.forecastday[0]?.astro?.sunrise }
-                    </Text>
+                    <Text className="text-white font-semibold text-base"> { weather?.forecast?.forecastday[0]?.astro?.sunrise }</Text>
                   </View>
+
+
+  
                   
                 </View>
               </View>
-
+           
               {/* forecast for next days */}
               <View className="mb-2 space-y-3">
                 <View className="flex-row items-center mx-5 space-x-2">
